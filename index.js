@@ -10,6 +10,8 @@ mainCtx.drawImage(n2, 50, 50);
 mainCtx.drawImage(n2, 130, 20);
 mainCtx.drawImage(n2, 100, 120);
 
+
+
 // 创建一个节点
 function createNode() {
 	var canvas = document.createElement('canvas');
