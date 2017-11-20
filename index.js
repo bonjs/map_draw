@@ -2,33 +2,35 @@
 var mainCanvas = document.getElementById('mainCanvas');
 var mainCtx = mainCanvas.getContext('2d');
 
-var n1 = createNode();
-var n2 = createNode();
+console.time()
 
-mainCtx.drawImage(n1, 0, 0);
-mainCtx.drawImage(n2, 50, 50);
-mainCtx.drawImage(n2, 130, 20);
-mainCtx.drawImage(n2, 100, 120);
-
+for(var i = 0; i < 30000; i ++) {
+	var n1 = createNode(mainCtx);
+}
+console.timeEnd();
 
 
-// ´´½¨Ò»¸ö½Úµã
-function createNode() {
-	var canvas = document.createElement('canvas');
 
-	var width = 200,
-	height = 200;
-	canvas.height = height;
-	canvas.width = width;
-	var ctx = canvas.getContext('2d');
 
-	var grd = ctx.createRadialGradient(width / 2, height / 2, 1, width / 2, height / 2, height / 2);
+// åˆ›å»ºä¸€ä¸ªèŠ‚ç‚¹
+function createNode(ctx) {
+	
+	var alpha = 0.5;
+	
+	var x = 10;
+	var y = 10;
+	
+	var radius = 5;
+	
+	ctx.shadowColor = ('rgba(0,0,0,' + alpha + ')');
+	//
+	ctx.shadowOffsetX = 15000;
+	ctx.shadowOffsetY = 15000;
+	ctx.shadowBlur = radius;
 
-	grd.addColorStop(0, 'rgba(0,0,0,1)');
-	grd.addColorStop(1, 'rgba(0,0,0,0)');
-	//Ê¹ÓÃ¾­Ïò½¥±ä
-	ctx.fillStyle = grd;
-	ctx.fillRect(0, 0, width, width);
+	ctx.beginPath();
+	ctx.arc(x - 15000, y - 15000, radius, 0, Math.PI * 2, true);
+	ctx.closePath();
+	ctx.fill();
 
-	return canvas;
 }
